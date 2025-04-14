@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 
@@ -23,6 +24,11 @@ function App() {
 
     function sendForm(e){
       e.preventDefault()
+        axios.post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts", formData)
+        .then((response) => {
+          console.log(response.data)
+        });
+      
     }
 
 
