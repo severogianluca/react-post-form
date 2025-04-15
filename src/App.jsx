@@ -3,7 +3,7 @@ import { useState } from "react";
 
 
 function App() {
-
+  // setto i valori inziali 
   const [formData, setFormData] = useState({
     author: '',
     title: '',
@@ -16,6 +16,7 @@ function App() {
     const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
 
     setFormData((formData) => ({
+      // value conterra il valore o del checkbox o del form
       ...formData, [e.target.name]: value
     }));
 
@@ -36,41 +37,72 @@ function App() {
 
   }
 
-
-
-
-
   return (
     <>
 
-      <form onSubmit={sendForm}>
-        <input type="text"
+<div className="d-flex justify-content-center align-items-center gradient-bg" style={{ height: "100vh" }}>
+  <div
+    className="border rounded p-4 shadow-sm bg-light"
+    style={{ width: "500px", height: "450px", overflowY: "auto" }}
+  >
+    <form onSubmit={sendForm}>
+      <div className="mb-3">
+        <label htmlFor="author" className="form-label">Autore</label>
+        <input
+          type="text"
+          className="form-control"
+          id="author"
           name="author"
-          value={formData.name}
+          value={formData.author}
           placeholder="Inserisci autore"
-          onChange={handleFormdData} />
+          onChange={handleFormdData}
+        />
+      </div>
 
-
-        <input type="text"
+      <div className="mb-3">
+        <label htmlFor="title" className="form-label">Titolo</label>
+        <input
+          type="text"
+          className="form-control"
+          id="title"
           name="title"
-          value={formData.name}
+          value={formData.title}
           placeholder="Inserisci titolo"
-          onChange={handleFormdData} />
+          onChange={handleFormdData}
+        />
+      </div>
 
-        <input type="text"
+      <div className="mb-3">
+        <label htmlFor="body" className="form-label">Testo</label>
+        <textarea
+          className="form-control"
+          id="body"
           name="body"
-          value={formData.name}
-          placeholder="Inserisci testo"
-          onChange={handleFormdData} />
+          value={formData.body}
+          placeholder="Inserisci il contenuto del post"
+          onChange={handleFormdData}
+          rows="2"
+        ></textarea>
+      </div>
 
-
-        <input type="checkbox"
+      <div className="form-check mb-3">
+        <input
+          type="checkbox"
+          className="form-check-input"
+          id="public"
           name="public"
           checked={formData.public}
-          onChange={handleFormdData} />
-        <button>invio</button>
+          onChange={handleFormdData}
+        />
+        <label className="form-check-label" htmlFor="public">Pubblic</label>
+      </div>
 
-      </form>
+      <button type="submit" className="btn btn-primary w-100">Invia</button>
+    </form>
+  </div>
+</div>
+
+
     </>
   )
 }
